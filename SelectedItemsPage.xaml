@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SneakerLocalMaui.SelectedItemsPage">
+
+    <StackLayout Padding="20" Spacing="10">
+        <Label Text="Selected Items" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,10"/>
+
+        <!-- ListView to display the selected items -->
+        <ListView x:Name="SelectedItemsListView" VerticalOptions="FillAndExpand" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Horizontal">
+                            <!-- Bindings to display selected sneaker properties -->
+                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Brand}" FontAttributes="Italic"/>
+                            <Label Text="{Binding Price, StringFormat='Price: ${0:F2}'}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Button to remove items from the cart -->
+      
+    </StackLayout>
+
+</ContentPage>

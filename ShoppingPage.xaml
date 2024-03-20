@@ -1,0 +1,42 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SneakerLocalMaui.ShoppingPage"
+             xmlns:local="clr-namespace:SneakerLocalMaui.Models"
+             xmlns:services="clr-namespace:SneakerLocalMaui.Services"
+             xmlns:viewModel="clr-namespace:SneakerLocalMaui.ViewModels">
+
+    <ContentPage.Resources>
+        <services:SneakerLocalDatabase x:Key="DatabaseService"/>
+        <viewModel:ShoppingViewModel x:Key="ShoppingViewModel"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="10">
+            <Label Text="Available Sneakers" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,10"/>
+
+            <ListView x:Name="SneakersListView" ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                                <!-- Checkbox -->
+                                <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center" Margin="0,0,10,0"/>
+                                <!-- Labels -->
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Brand}" FontAttributes="Italic"/>
+                                <Label Text="{Binding Price, StringFormat='Price: ${0:F2}'}"/>
+                                <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Confirm button -->
+            <Button Text="Add To Cart" Clicked="AddToCartButton_Clicked" HorizontalOptions="FillAndExpand"/>
+
+            <!-- Shopping cart button -->
+            <Button Text="Shopping Cart" Clicked="ShoppingCartButton_ClickedAsync" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
